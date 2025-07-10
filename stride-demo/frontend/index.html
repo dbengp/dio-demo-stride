@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Ameaças STRIDE</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Análise de Ameaças STRIDE</h1>
+    </header>
+    <main>
+        <div class="form-container">
+            <h2>Envie os Detalhes da Aplicação para Análise</h2>
+            <form id="threatAnalysisForm">
+                <label for="tipo_aplicacao">Tipo de Aplicação:</label>
+                <input type="text" id="tipo_aplicacao" name="tipo_aplicacao" required>
+
+                <label for="autenticacao">Métodos de Autenticação:</label>
+                <input type="text" id="autenticacao" name="autenticacao" required>
+
+                <label for="acesso_internet">Exposta na Internet:</label>
+                <select id="acesso_internet" name="acesso_internet" required>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                </select>
+
+                <label for="dados_sensiveis">Dados Sensíveis:</label>
+                <input type="text" id="dados_sensiveis" name="dados_sensiveis" required>
+
+                <label for="descricao_aplicacao">Descrição da Aplicação (código, README, etc.):</label>
+                <textarea id="descricao_aplicacao" name="descricao_aplicacao" rows="6" required></textarea>
+
+                <label for="imagem">Diagrama de Arquitetura (Opcional - imagem):</label>
+                <input type="file" id="imagem" name="imagem" accept="image/*">
+
+                <button type="submit" id="submitAnalysis">Analisar Ameaças</button>
+            </form>
+            <div id="loadingMessage" style="display: none;">
+                Carregando análise... Por favor, aguarde.
+            </div>
+            <div id="errorMessage" style="display: none;"></div>
+        </div>
+
+        <div class="controls">
+            <button id="showThreatModel">Ver Modelo de Ameaças</button>
+            <button id="showSuggestions">Ver Sugestões de Melhoria</button>
+        </div>
+        <div id="cy" style="display: none;"></div>
+        <div id="suggestions" class="suggestions-container" style="display: none;">
+            <h2>Sugestões de Melhoria</h2>
+            <ul id="suggestionsList"></ul>
+        </div>
+        <div id="threatDetails" class="threat-details" style="display: none;">
+            <h2>Detalhes da Ameaça</h2>
+            <p><strong>Tipo de Ameaça:</strong> <span id="detailThreatType"></span></p>
+            <p><strong>Cenário:</strong> <span id="detailScenario"></span></p>
+            <p><strong>Impacto Potencial:</strong> <span id="detailPotentialImpact"></span></p>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

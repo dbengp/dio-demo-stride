@@ -1,0 +1,283 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 20px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+main {
+    flex-grow: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Adiciona espaçamento entre os elementos principais */
+}
+
+/* --- Estilos para o Formulário de Envio --- */
+.form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    border-top: 5px solid #3498db; /* Detalhe azul no topo */
+}
+
+.form-container h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+.form-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaçamento entre os campos */
+}
+
+.form-container label {
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 5px;
+    display: block; /* Garante que o label ocupe sua própria linha */
+}
+
+.form-container input[type="text"],
+.form-container textarea,
+.form-container select {
+    width: calc(100% - 20px); /* Ajusta a largura considerando o padding */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+.form-container input[type="text"]:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.form-container textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 100px;
+}
+
+.form-container input[type="file"] {
+    padding: 10px 0; /* Ajusta o padding para o input de arquivo */
+}
+
+.form-container button {
+    padding: 14px 30px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #27ae60; /* Cor verde para o botão de análise */
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; /* Espaçamento acima do botão */
+    align-self: center; /* Centraliza o botão */
+    width: auto; /* Permite que o botão se ajuste ao conteúdo */
+    max-width: 250px;
+}
+
+.form-container button:hover {
+    background-color: #229a53;
+    transform: translateY(-2px);
+}
+
+.form-container button:active {
+    transform: translateY(0);
+}
+
+/* --- Mensagens de Status (Carregamento e Erro) --- */
+#loadingMessage {
+    background-color: #e8f5e9; /* Fundo verde claro */
+    color: #2e7d32; /* Texto verde escuro */
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    border: 1px solid #a5d6a7;
+}
+
+#errorMessage {
+    background-color: #ffebee; /* Fundo vermelho claro */
+    color: #c62828; /* Texto vermelho escuro */
+    padding: 15px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    border: 1px solid #ef9a9a;
+}
+
+/* --- Estilos para os botões de controle (Ver Modelo/Sugestões) --- */
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    /* Ajusta a visibilidade no JS, mas por padrão pode ficar oculto se o JS não estiver carregado */
+    /* display: none; */
+}
+
+button { /* Reutilizando a regra geral, mas o .form-container button é mais específico */
+    padding: 12px 25px;
+    font-size: 1.1em;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #3498db;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* --- Estilos para o Cytoscape.js Container --- */
+#cy {
+    width: 90%;
+    max-width: 1200px;
+    height: 600px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background-color: #fff;
+    margin-bottom: 20px;
+    /* display: none; */ /* Controlado pelo JS */
+}
+
+/* --- Estilos para Detalhes da Ameaça --- */
+.threat-details {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 90%;
+    max-width: 800px;
+    border-left: 5px solid #e74c3c;
+    /* display: none; */ /* Controlado pelo JS */
+}
+
+.threat-details h2 {
+    color: #e74c3c;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.threat-details p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.threat-details strong {
+    color: #555;
+}
+
+/* --- Estilos para Sugestões de Melhoria --- */
+.suggestions-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    width: 90%;
+    max-width: 800px;
+    border-left: 5px solid #27ae60;
+    /* display: none; */ /* Controlado pelo JS */
+}
+
+.suggestions-container h2 {
+    color: #27ae60;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.suggestions-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 0;
+}
+
+.suggestions-container li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* --- Cytoscape.js Specific Styles (mantidos e ligeiramente ajustados) --- */
+.cy-node { /* Regra geral para nodes do Cytoscape */
+    font-size: 14px;
+    text-valign: center;
+    text-halign: center;
+    color: #333;
+    text-wrap: wrap;
+    text-max-width: 120px;
+    text-overflow-wrap: anywhere;
+}
+
+.cy-node-threat-type {
+    background-color: #3498db;
+    color: white;
+    width: 100px;
+    height: 100px;
+    font-weight: bold;
+    shape: round-rectangle;
+    text-wrap: wrap;
+    text-max-width: 90px; /* Garante que o texto do tipo de ameaça caiba bem */
+}
+
+.cy-node-threat {
+    background-color: #ecf0f1;
+    border-width: 1px;
+    border-color: #bdc3c7;
+    width: 150px;
+    height: 150px;
+    shape: ellipse;
+}
+
+.cy-edge {
+    width: 2px;
+    line-color: #95a5a6;
+    target-arrow-shape: triangle;
+    target-arrow-color: #95a5a6;
+    curve-style: bezier;
+}

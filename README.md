@@ -40,4 +40,11 @@ O modelo STRIDE é uma ferramenta valiosa para a modelagem de ameaças (threat m
  - Denial of Service (DoS): Garantir que a plataforma de streaming permaneça disponível para os usuários, evitando interrupções que resultariam em perda de assinantes e receita, especialmente durante eventos ao vivo ou lançamentos de conteúdo popular.
  - Elevation of Privilege (EoP): Impedir que usuários ou atacantes obtenham privilégios que lhes permitam acessar conteúdo restrito, modificar informações de outros usuários ou controlar aspectos da plataforma.
 
+ #### Implementação desse projeto - com auxílio do Copilot:
+
+ - frontend: uma aplicação muito simplificada feita em html, css e javscript, constando de um formulário <stride-demo\frontend\prints\formulario.png> de preenchimento para consecução de orientações detalhadas a nível de demonstração tendo por base o STRIDE e sua respectiva representação visual <stride-demo\frontend\prints\visualização_.png> <stride-demo\frontend\prints\visualização_.png> com auxilio da biblioteca cytoscape.
+    * como executar: no VS Code, clique com o botão direito do mouse em index.html e selecione Open with Live Server. Alternativa: Clique no botão "Go Live" na barra de status inferior desse IDE. 
+ - backend: uma aplicação fastAPI com um único endpoint que realiza realiza a consulta no Agente de IA implantado no Azure <stride-demo\backend\postman\print_postman.png>
+    * como executar: `uvicorn main:app --reload`
+
 #### Visite o endereço para muito mais informação sobre segurança: <https://learn.microsoft.com/pt-br/azure/security/develop/threat-modeling-tool>
